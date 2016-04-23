@@ -25,27 +25,28 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.contact', {
+    url: '/contact',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/contact.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.church-services', {
+      url: '/church-services',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/church-services.html',
+          controller: 'ChurchServicesCtrl'
         }
       }
     })
@@ -59,15 +60,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+    .state('app.news', {
+      url: '/news',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/news.html',
+          controller: 'NewsCtrl'
+        }
       }
-    }
-  });
+    })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/news');
 });
