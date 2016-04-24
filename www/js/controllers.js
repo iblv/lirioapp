@@ -1,3 +1,4 @@
+headerLogo = "<img src=\"img/logo-49x40.png\">";
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -12,6 +13,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NewsCtrl', function($scope) {
+  $scope.pageTitle = headerLogo;
   $scope.news = [
     { title: 'News 1', url: '#'},
     { title: 'News 2', url: '#'},
@@ -20,6 +22,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChurchServicesCtrl', function($scope) {
+  $scope.pageTitle = headerLogo;
   $scope.services = {
     sunday:{
       dayname: 'Domingo',
@@ -42,5 +45,13 @@ angular.module('starter.controllers', [])
         {hour: '19:30', name: 'SABADÃO JOVEM'}
       ]}
   };
+})
+
+.controller('ContactsCtrl', function($scope) {
+  $scope.pageTitle = headerLogo;
+})
+
+.controller('DonationsCtrl', function($scope) {
+  $scope.pageTitle = headerLogo;
 })
 

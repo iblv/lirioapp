@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/contact',
     views: {
       'menuContent': {
-        templateUrl: 'templates/contact.html'
+        templateUrl: 'templates/contact.html',
+        controller: 'ContactsCtrl'
       }
     }
   })
@@ -50,15 +51,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
 
     .state('app.news', {
       url: '/news',
@@ -66,6 +58,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         'menuContent': {
           templateUrl: 'templates/news.html',
           controller: 'NewsCtrl'
+        }
+      }
+    })
+
+    .state('app.donations', {
+      url: '/donations',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/donations.html',
+          controller: 'DonationsCtrl'
         }
       }
     })

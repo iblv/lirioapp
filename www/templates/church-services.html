@@ -1,11 +1,11 @@
-<ion-view view-title="Cultos">
+<ion-view view-title="{{pageTitle}}">
   <ion-content>
     <div class="card" ng-repeat="service in services">
       <div class="item item-divider">
         {{ service.dayname }}
       </div>
       <div class="item item-text-wrap" ng-repeat="schedule in service.services">
-        {{ schedule.hour }} : {{ schedule.name }}
+        {{ schedule.hour }} - {{ schedule.name }}
       </div>
     </div>
   </ion-content>
