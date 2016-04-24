@@ -4,8 +4,8 @@
   <description>
         An Ionic Framework and Cordova project.
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+  <author email="gwmoura@gmail.com" href="https://georgemoura.com.br/">
+      George Moura
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -17,4 +17,13 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <!-- Allow links to web pages to open in a browser -->
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <!-- Allow tel: links to open the dialer -->
+  <allow-intent href="tel:*" />
+  <!-- Allow geo: links to open maps -->
+  <allow-intent href="geo:*" />
+  <!-- Allow mailto: links to open maps -->
+  <allow-intent href="mailto:*" />
 </widget>
