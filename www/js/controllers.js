@@ -12,13 +12,23 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('NewsCtrl', function($scope) {
+.controller('NewsCtrl', function($scope, $http) {
   $scope.pageTitle = headerLogo;
-  $scope.news = [
-    { title: 'News 1', url: '#'},
-    { title: 'News 2', url: '#'},
-    { title: 'News 3', url: '#'}
-  ];
+  $http({
+    method: 'JSONP',
+    url: "http://ibldv.com.br/?json=get_recent_posts"}).
+  success(function(response){
+    console.log(response);
+    $scope.news = response.data.posts;
+  }).
+  error(function(response){
+    console.log("deu pau", response);
+  });
+  // $scope.news = [
+  //   { title: 'News 1', url: '#'},
+  //   { title: 'News 2', url: '#'},
+  //   { title: 'News 3', url: '#'}
+  // ];
 })
 
 .controller('ChurchServicesCtrl', function($scope) {
