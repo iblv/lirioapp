@@ -1,4 +1,22 @@
 headerLogo = "<img src=\"img/logo-49x40.png\">";
+
+api_host = "http://ibldv.com.br"; //"http://localhost:8000";
+
+function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
+
+function htmlUnescape(value){
+    return String(value)
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
+}
+
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -15,20 +33,16 @@ angular.module('starter.controllers', [])
 .controller('NewsCtrl', function($scope, $http) {
   $scope.pageTitle = headerLogo;
   $http({
-    method: 'JSONP',
-    url: "http://ibldv.com.br/?json=get_recent_posts"}).
+    method: 'GET',
+    url: api_host+"/wp-json/wp/v2/posts"
+  }).
   success(function(response){
-    console.log(response);
-    $scope.news = response.data.posts;
+    // console.log(response);
+    $scope.news = response;
   }).
   error(function(response){
     console.log("deu pau", response);
   });
-  // $scope.news = [
-  //   { title: 'News 1', url: '#'},
-  //   { title: 'News 2', url: '#'},
-  //   { title: 'News 3', url: '#'}
-  // ];
 })
 
 .controller('ChurchServicesCtrl', function($scope) {
