@@ -1,8 +1,9 @@
 <ion-view view-title="{{pageTitle}}">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="new in news" href="{{new.url}}">
-        {{new.title}}
+      <ion-item ng-repeat="new in news" href="{{new.link}}">
+        <h2>{{new.title.rendered}}</h2>
+        <p ng-bind-html="new.excerpt.rendered"></p>
       </ion-item>
     </ion-list>
   </ion-content>
