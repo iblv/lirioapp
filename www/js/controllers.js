@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('NewsCtrl', function($scope, $http) {
+.controller('PostsCtrl', function($scope, $http) {
   $scope.pageTitle = headerLogo + ' <b>Notícias</b>';
   $http({
     method: 'GET',
@@ -38,10 +38,29 @@ angular.module('starter.controllers', [])
   }).
   success(function(response){
     // console.log(response);
-    $scope.news = response;
+    $scope.posts = response;
   }).
   error(function(response){
-    console.log("deu pau", response);
+    $scope.message = "Ops! Erro ao conectar com o servidor"
+  });
+})
+
+.controller('PostCtrl', function($scope, $stateParams, $http) {
+  $http({
+    method: 'GET',
+    url: api_host+"/wp-json/wp/v2/posts/"+$stateParams.postId
+  }).
+  success(function(response){
+    // console.log(response);
+    post = response;
+    $scope.post = post;
+    $http.get(post._links.author[0].href)
+    .success(function(response){
+      $scope.author = response
+    });
+  }).
+  error(function(response){
+    $scope.message = "Ops! Erro ao conectar com o servidor"
   });
 })
 
