@@ -31,7 +31,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NewsCtrl', function($scope, $http) {
-  $scope.pageTitle = headerLogo;
+  $scope.pageTitle = headerLogo + ' <b>Notícias</b>';
   $http({
     method: 'GET',
     url: api_host+"/wp-json/wp/v2/posts"
@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChurchServicesCtrl', function($scope) {
-  $scope.pageTitle = headerLogo;
+  $scope.pageTitle = headerLogo + ' <b>Cultos</b>';
   $scope.services = {
     sunday:{
       dayname: 'Domingo',
@@ -72,10 +72,10 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ContactsCtrl', function($scope) {
-  $scope.pageTitle = headerLogo;
+  $scope.pageTitle = headerLogo + ' <b>Contatos</b>';
 })
 
 .controller('DonationsCtrl', function($scope) {
-  $scope.pageTitle = headerLogo;
+  $scope.pageTitle = headerLogo + ' <b>Doações</b>';
 })
 
