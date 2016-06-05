@@ -6,6 +6,7 @@
     "ionic-platform-web-client": "^0.7.1"
   },
   "dependencies": {
-    "angular-timeago": "^0.4.1"
+    "angular-timeago": "^0.4.1",
+    "ngCordova": "^0.1.26-alpha"
   }
 }
