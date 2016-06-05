@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('PostCtrl', function($scope, $stateParams, $http) {
+.controller('PostCtrl', function($scope, $stateParams, $http, $cordovaSocialSharing) {
   $http({
     method: 'GET',
     url: api_host+"/wp-json/wp/v2/posts/"+$stateParams.postId
@@ -62,6 +62,12 @@ angular.module('starter.controllers', [])
   error(function(response){
     $scope.message = "Ops! Erro ao conectar com o servidor"
   });
+
+  $scope.shareAnywhere = function(message, subject, link) {
+    ionic.Platform.ready(function(){
+      $cordovaSocialSharing.share(message, subject, null, link);
+    });
+  }
 })
 
 .controller('ChurchServicesCtrl', function($scope) {
