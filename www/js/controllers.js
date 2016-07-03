@@ -70,30 +70,34 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChurchServicesCtrl', function($scope) {
-  $scope.pageTitle = headerLogo + ' <b>Cultos</b>';
+.controller('ChurchServicesCtrl', function($scope, $http) {
+  $scope.day_of_week = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   $scope.services = {
-    sunday:{
+    0:{
       dayname: 'Domingo',
-      services:
-      [
-        {hour: '07:00', name: 'CULTO DA ALVORADA'},
-        {hour: '09:00', name: 'ESCOLA BÍBLICA'},
-        {hour: '10:00', name: 'CULTO DA FAMÍLIA'},
-        {hour: '10:00', name: 'EBD INFANTIL'},
-        {hour: '17:00', name: 'CULTO DA BENÇÃO'},
-        {hour: '19:00', name: 'CULTO DE CELEBRAÇÃO'}
-      ]},
-    saturday:{
+      services: []
+    },
+    6:{
       dayname: 'Sábado',
-      services:
-      [
-        {hour: '15:00', name: 'DESPERTA DÉBORA'},
-        {hour: '17:00', name: 'CULTO DE ADOLESCENTES'},
-        {hour: '17:00', name: 'ENSAIO DO CORAL'},
-        {hour: '19:30', name: 'SABADÃO JOVEM'}
-      ]}
+      services: []
+    }
   };
+  $scope.pageTitle = headerLogo + ' <b>Cultos</b>';
+  $http({
+    method: 'GET',
+    url: "https://churchmetrics-api-client.herokuapp.com/services"
+  }).
+  success(function(response){
+    // console.log(response);
+    services = response;
+    for(i=0; i < services.length;  i++){
+      service = services[i];
+      $scope.services[service.day_of_week].services.push({hour: service.time_of_day.substring(11,16), name: service.event.name});
+    }
+  }).
+  error(function(response){
+    $scope.message = "Ops! Erro ao conectar com o servidor"
+  });
 })
 
 .controller('ContactsCtrl', function($scope) {
